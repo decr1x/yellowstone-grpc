@@ -248,7 +248,7 @@ impl GeyserGrpcBuilder {
     fn build(
         self,
         channel: Channel,
-    ) -> GeyserGrpcBuilderResult<GeyserGrpcClient<impl Interceptor>> {
+    ) -> GeyserGrpcBuilderResult<GeyserGrpcClient<InterceptorXToken>> {
         let interceptor = InterceptorXToken {
             x_token: self.x_token,
             x_request_snapshot: self.x_request_snapshot,
