@@ -102,7 +102,7 @@ impl<F: Interceptor> GeyserGrpcClient<F> {
     pub async fn subscribe(
         &mut self,
     ) -> GeyserGrpcClientResult<(
-        impl Sink<SubscribeRequest, Error = mpsc::SendError>,
+        impl Sink<SubscribeRequest, Error = mpsc::SendError> + Clone,
         impl Stream<Item = Result<SubscribeUpdate, Status>>,
     )> {
         self.subscribe_with_request(None).await
@@ -112,7 +112,7 @@ impl<F: Interceptor> GeyserGrpcClient<F> {
         &mut self,
         request: Option<SubscribeRequest>,
     ) -> GeyserGrpcClientResult<(
-        impl Sink<SubscribeRequest, Error = mpsc::SendError>,
+        impl Sink<SubscribeRequest, Error = mpsc::SendError> + Clone,
         impl Stream<Item = Result<SubscribeUpdate, Status>>,
     )> {
         let (mut subscribe_tx, subscribe_rx) = mpsc::unbounded();
